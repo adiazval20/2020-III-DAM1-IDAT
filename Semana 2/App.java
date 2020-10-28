@@ -5,23 +5,33 @@ import java.io.IOException;
 class App {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        CalculadoraCientifica calc = new CalculadoraCientifica();
+        // CalculadoraCientifica calc = new CalculadoraCientifica();
         
         // System.out.println("Ingrese el numero limite:");
         // int num = Integer.parseInt(br.readLine());
         // calc.fibonacci(num);
 
-        System.out.println("Ingrese el primer numero:");
-        int x = Integer.parseInt(br.readLine());
+        // System.out.println("Ingrese el primer numero:");
+        // int x = Integer.parseInt(br.readLine());
 
-        System.out.println("Ingrese el segundo numero:");
-        int y = Integer.parseInt(br.readLine());
+        // System.out.println("Ingrese el segundo numero:");
+        // int y = Integer.parseInt(br.readLine());
 
-        System.out.println("Ingrese el tercer numero:");
-        int z = Integer.parseInt(br.readLine());
+        // System.out.println("Ingrese el tercer numero:");
+        // int z = Integer.parseInt(br.readLine());
 
-        System.out.println(String.format("El resultado de sumar el numero %d, el numero %d y el numero %d es:", x, y, z));
-        System.out.println(calc.sumar(x, y, z));
+        // System.out.println(String.format("El resultado de sumar el numero %d, el numero %d y el numero %d es:", x, y, z));
+        // System.out.println(calc.sumar(x, y, z));
+
+        // Forma forma = new Forma();
+        Cuadrado cuadrado = new Cuadrado();
+        // System.out.println(cuadrado.calcularArea());
+
+        Circulo circulo = new Circulo();
+        // System.out.println(circulo.calcularArea());
+
+        Rectangulo rectangulo = new Rectangulo();
+        System.out.println(rectangulo.calcularArea());
     }
 
     public static void saludar(boolean mostrarNombre, String tipoSaludo){
