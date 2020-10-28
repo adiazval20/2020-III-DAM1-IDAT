@@ -24,14 +24,33 @@ class App {
         // System.out.println(calc.sumar(x, y, z));
 
         // Forma forma = new Forma();
-        Cuadrado cuadrado = new Cuadrado();
+        // Cuadrado cuadrado = new Cuadrado();
         // System.out.println(cuadrado.calcularArea());
 
-        Circulo circulo = new Circulo();
+        // Circulo circulo = new Circulo();
         // System.out.println(circulo.calcularArea());
 
-        Rectangulo rectangulo = new Rectangulo();
-        System.out.println(rectangulo.calcularArea());
+        // Rectangulo rectangulo = new Rectangulo();
+        // System.out.println(rectangulo.calcularArea());
+
+        Alumno alumno = new Alumno();
+        
+        System.out.println("Ingrese el apellido paterno");
+        alumno.setApellidoPaterno(br.readLine());
+
+        System.out.println("Ingrese el apellido materno");
+        alumno.setApellidoMaterno(br.readLine());
+
+        System.out.println("Ingrese los nombres");
+        alumno.setNombres(br.readLine());
+
+        System.out.println("Ingrese el codigo universitario");
+        alumno.setCodigoUniversitario(br.readLine());
+
+        System.out.println("Ingrese el ciclo de ingreso");
+        alumno.setCicloIngreso(br.readLine());
+
+        System.out.println(String.format("Bienvenido %s %s %s, tu codigo es: %s y tu ciclo de ingreso es: %s", alumno.getApellidoPaterno(),alumno.getApellidoMaterno(),alumno.getNombres(),alumno.getCodigoUniversitario(),alumno.getCicloIngreso()));
     }
 
     public static void saludar(boolean mostrarNombre, String tipoSaludo){
