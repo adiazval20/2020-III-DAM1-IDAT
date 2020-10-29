@@ -1,4 +1,24 @@
-class CalculadoraCientifica extends Calculadora {
+class CalculadoraCientifica implements Calculadora {
+    @Override
+    public int sumar(int x, int y){
+        return x + y;
+    }
+
+    @Override
+    public int restar(int x, int y){
+        return x - y;
+    }
+
+    @Override
+    public int multiplicar(int x, int y){
+        return x * y;
+    }
+
+    @Override
+    public int dividir(int x, int y){
+        return x / y;
+    }
+
     public int max(int x, int y, int z) {
         int mayor = x;
 

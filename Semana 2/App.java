@@ -33,24 +33,40 @@ class App {
         // Rectangulo rectangulo = new Rectangulo();
         // System.out.println(rectangulo.calcularArea());
 
-        Alumno alumno = new Alumno();
+        // Alumno alumno = new Alumno();
         
-        System.out.println("Ingrese el apellido paterno");
-        alumno.setApellidoPaterno(br.readLine());
+        // System.out.println("Ingrese el apellido paterno");
+        // alumno.setApellidoPaterno(br.readLine());
 
-        System.out.println("Ingrese el apellido materno");
-        alumno.setApellidoMaterno(br.readLine());
+        // System.out.println("Ingrese el apellido materno");
+        // alumno.setApellidoMaterno(br.readLine());
 
-        System.out.println("Ingrese los nombres");
-        alumno.setNombres(br.readLine());
+        // System.out.println("Ingrese los nombres");
+        // alumno.setNombres(br.readLine());
 
-        System.out.println("Ingrese el codigo universitario");
-        alumno.setCodigoUniversitario(br.readLine());
+        // System.out.println("Ingrese el codigo universitario");
+        // alumno.setCodigoUniversitario(br.readLine());
 
-        System.out.println("Ingrese el ciclo de ingreso");
-        alumno.setCicloIngreso(br.readLine());
+        // System.out.println("Ingrese el ciclo de ingreso");
+        // alumno.setCicloIngreso(br.readLine());
 
-        System.out.println(String.format("Bienvenido %s %s %s, tu codigo es: %s y tu ciclo de ingreso es: %s", alumno.getApellidoPaterno(),alumno.getApellidoMaterno(),alumno.getNombres(),alumno.getCodigoUniversitario(),alumno.getCicloIngreso()));
+        // System.out.println(String.format("Bienvenido %s %s %s, tu codigo es: %s y tu ciclo de ingreso es: %s", alumno.getApellidoPaterno(),alumno.getApellidoMaterno(),alumno.getNombres(),alumno.getCodigoUniversitario(),alumno.getCicloIngreso()));
+
+        // Automovil automovil = new Automovil();
+        // automovil.desplazarse();
+        // automovil.frenar();
+
+        CalculadoraCientifica calcCienc = new CalculadoraCientifica();
+
+        System.out.println("Ingrese el primer numero");
+        int x = Integer.parseInt(br.readLine());
+
+        System.out.println("Ingrese el segundo numero");
+        int y = Integer.parseInt(br.readLine());
+
+        System.out.println(String.format("El resultado de sumar %d con %d es igual a: ", x, y));
+
+        System.out.println(calcCienc.sumar(x, y));
     }
 
     public static void saludar(boolean mostrarNombre, String tipoSaludo){
