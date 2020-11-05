@@ -9,21 +9,43 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 public class HomeActivity extends AppCompatActivity {
+    private EditText edtNombre;
+    private TextView txtSaludo;
+    private Button btnSaludar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        final EditText edtNombre = findViewById(R.id.edtNombre);
-        Button btnSaludar = findViewById(R.id.btnSaludar);
-        final TextView txtSaludo = findViewById(R.id.txtSaludo);
+//        edtNombre = findViewById(R.id.edtNombre);
+//        btnSaludar = findViewById(R.id.btnSaludar);
+        txtSaludo = findViewById(R.id.txtSaludo);
+//
+//        btnSaludar.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                mostrarSaludo(edtNombre.getText().toString());
+//            }
+//        });
 
-        btnSaludar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                txtSaludo.setText("Hola, " + edtNombre.getText().toString());
-            }
-        });
+//        Bundle data = getIntent().getExtras();
+//        String nombre = (data != null) ? data.getString("nombre") : "";
+//
+//        mostrarSaludo(nombre);
+
+        Bundle data = getIntent().getExtras();
+        String operacion = data.getString("operacion");
+        int numeroA = data.getInt("numeroA");
+        int numeroB = data.getInt("numeroB");
+        int resultado = data.getInt("resultado");
+
+        txtSaludo.setText(String.format("El resultado de %s %d y %d es: %d", operacion, numeroA, numeroB, resultado));
+
+//        mostrarSaludo(String.valueOf(numeroA, numeroB, resultado));
     }
+
+//    private void mostrarSaludo(String nombre) {
+//        txtSaludo.setText("Hola, " + nombre);
+//    }
 }

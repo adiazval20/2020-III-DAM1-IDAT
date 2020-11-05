@@ -4,24 +4,111 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
+    android:gravity="center|top"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/btnSaludar"
-        android:text="Saludar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:text="Operaciones"
+        android:textAlignment="center"
+        android:textSize="22sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/edtOpSumaA"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/edtOpSumaB"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btnSumar"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:text="Sumar" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/edtOpRestaA"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/edtOpRestaB"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btnRestar"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:text="Restar" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/edtOpMultiplicaA"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/edtOpMultiplicaB"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btnMultiplicar"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:text="Multiplicar" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/edtOpDivideA"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/edtOpDivideB"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btnDividir"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:text="Dividir" />
+
+    </LinearLayout>
 
 </LinearLayout>
