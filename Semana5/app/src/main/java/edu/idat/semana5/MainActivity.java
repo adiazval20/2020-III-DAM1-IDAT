@@ -1,9 +1,8 @@
-package edu.idat.semana4;
+package edu.idat.semana5;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.widget.ImageView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -11,8 +10,5 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        ImageView imgProducto = findViewById(R.id.imgMiniatura);
-        imgProducto.setImageResource(R.drawable.iphone);
     }
 }

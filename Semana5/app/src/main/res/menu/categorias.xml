@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/optElectrodomesticos"
+        android:icon="@drawable/ic_baseline_laptop_24"
+        android:title="Electrodomésticos" />
+
+    <item
+        android:id="@+id/optMuebles"
+        android:icon="@drawable/ic_baseline_king_bed_24"
+        android:title="Muebles" />
+</menu>
