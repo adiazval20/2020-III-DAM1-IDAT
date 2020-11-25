@@ -2,6 +2,7 @@ package edu.idat.semana6;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
@@ -20,15 +21,32 @@ public class MainActivity extends AppCompatActivity {
         bnvSecciones.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                if (item.getItemId() == R.id.optInicio) {
-                    InicioFragment fragment = new InicioFragment();
-                    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                    transaction.replace(R.id.frmContenedor, fragment);
-                    transaction.addToBackStack(null);
-                    transaction.commit();
-                }
+                loadFragment(item.getItemId());
                 return true;
             }
         });
+
+        loadFragment(R.id.optInicio);
+    }
+
+    private void loadFragment(int itemId) {
+        Fragment fragment = new Fragment();
+
+        switch (itemId) {
+            case R.id.optInicio:
+                fragment = new InicioFragment();
+                break;
+            case R.id.optProductos:
+                fragment = new ProductosFragment();
+                break;
+            case R.id.optContacto:
+                fragment = new ContactoFragment();
+                break;
+        }
+
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.frmContenedor, fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 }
