@@ -2,63 +2,57 @@ package edu.idat.semana6;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ProductosFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.ArrayList;
+import java.util.List;
+
+import edu.idat.semana6.adapter.ProductoAdapter;
+import edu.idat.semana6.entity.Producto;
+
 public class ProductosFragment extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
     public ProductosFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ProductosFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static ProductosFragment newInstance(String param1, String param2) {
-        ProductosFragment fragment = new ProductosFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_productos, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        ListView lsvProductos = view.findViewById(R.id.lsvProductos);
+
+//        List<String> productos = new ArrayList<>();
+//        productos.add("Producto 1");
+//        productos.add("Producto 2");
+//        productos.add("Producto 3");
+//        productos.add("Producto 4");
+//        productos.add("Producto 5");
+//        productos.add("Producto 6");
+//        productos.add("Producto 7");
+//        productos.add("Producto 8");
+//
+//        ArrayAdapter adapter = new ArrayAdapter(getContext(), android.R.layout.simple_list_item_1, productos);
+//
+//        lsvProductos.setAdapter(adapter);
+
+        List<Producto> productos = new ArrayList<>();
+        productos.add(new Producto(1, "Producto 1", "", 1500, 0));
+        productos.add(new Producto(2, "Producto 2", "", 2000, 0));
+        productos.add(new Producto(3, "Producto 3", "", 2500, 0));
+
+        ProductoAdapter adapter = new ProductoAdapter(getContext(), R.layout.item_producto, productos);
+        lsvProductos.setAdapter(adapter);
     }
 }
