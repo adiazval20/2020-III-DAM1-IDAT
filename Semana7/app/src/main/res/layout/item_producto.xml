@@ -1,24 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="10dp">
+    android:layout_margin="10dp"
+    android:padding="10dp"
+    app:cardElevation="10dp">
 
-    <TextView
-        android:id="@+id/txtNombre"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Producto"
-        android:textAlignment="textEnd"
-        android:textSize="18sp"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/txtPrecio"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAlignment="textEnd"
-        app:layout_constraintTop_toBottomOf="@+id/txtNombre" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imgProducto"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/products"
+                app:civ_border_color="#787878"
+                app:civ_border_width="3dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/txtNombre"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="Producto"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toTopOf="@+id/txtPrecio"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imgProducto"
+                app:layout_constraintTop_toTopOf="@id/imgProducto" />
+
+            <TextView
+                android:id="@+id/txtPrecio"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="S/1500"
+                app:layout_constraintBottom_toBottomOf="@+id/imgProducto"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imgProducto"
+                app:layout_constraintTop_toBottomOf="@id/txtNombre" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+
+
+</com.google.android.material.card.MaterialCardView>

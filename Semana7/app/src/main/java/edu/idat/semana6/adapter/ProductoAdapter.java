@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.idat.semana6.R;
 import edu.idat.semana6.entity.Producto;
 
 public class ProductoAdapter extends RecyclerView.Adapter<ProductoViewHolder> {
@@ -26,7 +27,7 @@ public class ProductoAdapter extends RecyclerView.Adapter<ProductoViewHolder> {
     @NonNull
     @Override
     public ProductoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(null, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_producto, parent, false);
         return new ProductoViewHolder(view);
     }
 
