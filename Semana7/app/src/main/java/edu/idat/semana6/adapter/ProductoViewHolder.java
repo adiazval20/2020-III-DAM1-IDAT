@@ -23,6 +23,8 @@ public class ProductoViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void loadData(Producto producto) {
-        
+        imgProducto.setImageResource(producto.getImagenId());
+        txtNombre.setText(producto.getNombre());
+        txtPrecio.setText(String.format("Precio: %.2f", producto.getPrecio()));
     }
 }

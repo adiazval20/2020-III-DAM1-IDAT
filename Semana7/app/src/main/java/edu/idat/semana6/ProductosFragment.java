@@ -35,9 +35,9 @@ public class ProductosFragment extends Fragment {
         rcvProductos.setLayoutManager(new LinearLayoutManager(getContext()));
 
         List<Producto> productos = new ArrayList<>();
-        productos.add(new Producto(1, "Producto 1", "", 1500, 0));
-        productos.add(new Producto(2, "Producto 2", "", 2000, 0));
-        productos.add(new Producto(3, "Producto 3", "", 2500, 0));
+        productos.add(new Producto(1, "Producto 1", "", 1500, R.drawable.iphone));
+        productos.add(new Producto(2, "Producto 2", "", 2000, R.drawable.samsung));
+        productos.add(new Producto(3, "Producto 3", "", 2500, R.drawable.xiaomi));
 
         ProductoAdapter adapter = new ProductoAdapter(productos);
         rcvProductos.setAdapter(adapter);
