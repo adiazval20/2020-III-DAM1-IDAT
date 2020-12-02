@@ -1,40 +1,43 @@
 package edu.idat.semana6.adapter;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import edu.idat.semana6.R;
 import edu.idat.semana6.entity.Producto;
 
-public class ProductoAdapter extends ArrayAdapter<Producto> {
-    public ProductoAdapter(@NonNull Context context, int resource, @NonNull List<Producto> objects) {
-        super(context, resource, objects);
+public class ProductoAdapter extends RecyclerView.Adapter<ProductoViewHolder> {
+    private List<Producto> productos;
+
+    public ProductoAdapter() {
+        this.productos = new ArrayList<>();
+    }
+
+    public ProductoAdapter(List<Producto> productos) {
+        this.productos = productos;
     }
 
     @NonNull
     @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_producto, parent, false);
-        }
+    public ProductoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(null, parent, false);
+        return new ProductoViewHolder(view);
+    }
 
-        Producto producto = getItem(position);
+    @Override
+    public void onBindViewHolder(@NonNull ProductoViewHolder holder, int position) {
+        Producto producto = productos.get(position);
+        holder.loadData(producto);
+    }
 
-        TextView txtNombre = convertView.findViewById(R.id.txtNombre);
-        txtNombre.setText(producto.getNombre());
-
-        TextView txtPrecio = convertView.findViewById(R.id.txtPrecio);
-        txtPrecio.setText(String.format("Precio: %.2f", producto.getPrecio()));
-
-        return convertView;
+    @Override
+    public int getItemCount() {
+        return productos.size();
     }
 }
