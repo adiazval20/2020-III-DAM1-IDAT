@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.setCustomAnimations(R.anim.move_left_in, R.anim.move_left_out);
         transaction.replace(R.id.frmContenedor, fragment);
         transaction.addToBackStack(null);
         transaction.commit();
