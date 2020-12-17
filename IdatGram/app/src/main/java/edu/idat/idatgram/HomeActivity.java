@@ -51,6 +51,7 @@ public class HomeActivity extends AppCompatActivity {
         }
 
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
         transaction.replace(R.id.frmSeccion, fragment);
         transaction.addToBackStack(null);
         transaction.commit();
