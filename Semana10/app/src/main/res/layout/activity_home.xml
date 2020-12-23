@@ -18,9 +18,11 @@
             app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
 
             <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?actionBarSize"
-                android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                app:layout_collapseMode="pin"
                 app:title="IdatGram" />
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
@@ -36,7 +38,7 @@
         android:id="@+id/bnvSecciones"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:menu="@menu/menu_secciones"
-        android:layout_gravity="bottom" />
+        android:layout_gravity="bottom"
+        app:menu="@menu/menu_secciones" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
