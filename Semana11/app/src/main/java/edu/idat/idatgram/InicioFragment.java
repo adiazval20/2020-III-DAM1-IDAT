@@ -27,17 +27,6 @@ public class InicioFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        ImageView imgLogo = view.findViewById(R.id.imgLogo);
 
-        AnimatorSet animatorSet = new AnimatorSet();
-
-        ObjectAnimator rotation = ObjectAnimator.ofFloat(imgLogo, "rotation", 360f);
-        rotation.setDuration(3000);
-
-        ObjectAnimator fade = ObjectAnimator.ofFloat(imgLogo, "alpha", 0.3f, 1f);
-        fade.setDuration(1000);
-
-        animatorSet.playSequentially(fade, rotation);
-        animatorSet.start();
     }
 }
