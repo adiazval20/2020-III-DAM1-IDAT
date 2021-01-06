@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.google.android.material.button.MaterialButton;
@@ -21,10 +22,15 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import edu.idat.idatgram.entity.Post;
+import edu.idat.idatgram.repository.PostRepository;
+
 public class PostActivity extends AppCompatActivity {
     private static final int REQUEST_IMAGE_CAPTURE = 1;
     private static final int REQUEST_TAKE_PICTURE = 2;
     private ImageView imgFoto;
+    private MaterialButton btnTomarFoto, btnGuardar;
+    private EditText edtDescripcion;
     private String rutaFoto;
 
     @Override
@@ -33,12 +39,25 @@ public class PostActivity extends AppCompatActivity {
         setContentView(R.layout.activity_post);
 
         imgFoto = findViewById(R.id.imgFoto);
+        btnTomarFoto = findViewById(R.id.btnTomarFoto);
+        btnGuardar = findViewById(R.id.btnGuardar);
+        edtDescripcion = findViewById(R.id.edtDescripcion);
 
-        MaterialButton btnTomarFoto = findViewById(R.id.btnTomarFoto);
         btnTomarFoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 cargarCamara();
+            }
+        });
+
+        btnGuardar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Post post = new Post();
+                post.setRutaImagen(rutaFoto);
+                post.setDescripcion(edtDescripcion.getText().toString());
+                PostRepository.getInstance().save(post);
+                finish();
             }
         });
     }
@@ -97,7 +116,7 @@ public class PostActivity extends AppCompatActivity {
         sendBroadcast(mediaScanIntent);
     }
 
-    private void mostrarFoto(ImageView imageView){
+    private void mostrarFoto(ImageView imageView) {
         int anchoImageView = imageView.getWidth();
         int altoImageView = imageView.getHeight();
 
