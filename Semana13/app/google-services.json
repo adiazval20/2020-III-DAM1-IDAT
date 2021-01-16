@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "481299283510",
+    "project_id": "dam1-clases",
+    "storage_bucket": "dam1-clases.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:481299283510:android:b52d50d8a911d42d4b2297",
+        "android_client_info": {
+          "package_name": "edu.idat.idatgram"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "481299283510-svkc2t8qpc6fb96i3caoee943h09qrkd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAYIgMR6I7S134iRM5jRHkm57xDU8qPdnQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "481299283510-svkc2t8qpc6fb96i3caoee943h09qrkd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
