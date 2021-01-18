@@ -2,6 +2,8 @@ package edu.idat.idatgram;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Context;
 import android.content.Intent;
@@ -17,7 +19,11 @@ import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import edu.idat.idatgram.entity.Usuario;
+import edu.idat.idatgram.viewmodel.LoginViewModel;
+
 public class LoginActivity extends AppCompatActivity {
+    private LoginViewModel viewModel;
     private FirebaseAuth auth;
     private EditText edtUsername, edtPassword;
     private MaterialButton btnLogin, btnSignin;
@@ -26,6 +32,18 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        viewModel = new ViewModelProvider(this).get(LoginViewModel.class);
+        viewModel.login("admin", "admin").observe(this, new Observer<Usuario>() {
+            @Override
+            public void onChanged(Usuario usuario) {
+                if (usuario != null) {
+                    Toast.makeText(LoginActivity.this, "Usuario logueado correctamente", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(LoginActivity.this, "Credenciales incorrectas", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
 
         auth = FirebaseAuth.getInstance();
 
