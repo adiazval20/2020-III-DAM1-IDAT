@@ -7,6 +7,9 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -20,10 +23,12 @@ import java.util.List;
 import edu.idat.idatgram.adapter.PostAdapter;
 import edu.idat.idatgram.entity.Post;
 import edu.idat.idatgram.repository.PostRepository;
+import edu.idat.idatgram.viewmodel.HomeViewModel;
 
 public class InicioFragment extends Fragment {
+    private HomeViewModel viewModel;
+
     public InicioFragment() {
-        // Required empty public constructor
     }
 
     @Override
@@ -38,9 +43,15 @@ public class InicioFragment extends Fragment {
         RecyclerView rcvPosts = view.findViewById(R.id.rcvPosts);
         rcvPosts.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        List<Post> posts = PostRepository.getInstance().list();
-        PostAdapter adapter = new PostAdapter(posts);
-
+        PostAdapter adapter = new PostAdapter();
         rcvPosts.setAdapter(adapter);
+
+        viewModel = new ViewModelProvider(this).get(HomeViewModel.class);
+        viewModel.list().observe((LifecycleOwner) getContext(), new Observer<List<Post>>() {
+            @Override
+            public void onChanged(List<Post> posts) {
+                adapter.loadData(posts);
+            }
+        });
     }
 }

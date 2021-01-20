@@ -56,7 +56,7 @@ public class PostActivity extends AppCompatActivity {
                 Post post = new Post();
                 post.setRutaImagen(rutaFoto);
                 post.setDescripcion(edtDescripcion.getText().toString());
-                PostRepository.getInstance().save(post);
+//                PostRepository.getInstance().save(post);
                 finish();
             }
         });

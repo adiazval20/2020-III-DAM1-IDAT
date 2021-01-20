@@ -2,6 +2,7 @@ package edu.idat.idatgram;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -34,16 +35,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         viewModel = new ViewModelProvider(this).get(LoginViewModel.class);
-        viewModel.login("admin", "admin").observe(this, new Observer<Usuario>() {
-            @Override
-            public void onChanged(Usuario usuario) {
-                if (usuario != null) {
-                    Toast.makeText(LoginActivity.this, "Usuario logueado correctamente", Toast.LENGTH_LONG).show();
-                } else {
-                    Toast.makeText(LoginActivity.this, "Credenciales incorrectas", Toast.LENGTH_LONG).show();
-                }
-            }
-        });
+
 
         auth = FirebaseAuth.getInstance();
 
@@ -58,7 +50,22 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String username = edtUsername.getText().toString();
                 String password = edtPassword.getText().toString();
-                login(username, password);
+
+                if (username.trim().equals("") || password.trim().equals("")) {
+                    Toast.makeText(context, "Debe ingresar el usuario y la contraseña", Toast.LENGTH_SHORT).show();
+                } else {
+                    login(username, password);
+//                    viewModel.login(username, password).observe((LifecycleOwner) context, new Observer<Usuario>() {
+//                        @Override
+//                        public void onChanged(Usuario usuario) {
+//                            if (usuario != null) {
+//                                Toast.makeText(LoginActivity.this, "Usuario logueado correctamente", Toast.LENGTH_LONG).show();
+//                            } else {
+//                                Toast.makeText(LoginActivity.this, "Credenciales incorrectas", Toast.LENGTH_LONG).show();
+//                            }
+//                        }
+//                    });
+                }
             }
         });
 

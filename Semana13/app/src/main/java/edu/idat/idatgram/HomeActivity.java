@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Context;
 import android.content.Intent;
@@ -19,7 +20,10 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.HashMap;
 
+import edu.idat.idatgram.viewmodel.HomeViewModel;
+
 public class HomeActivity extends AppCompatActivity {
+    private HomeViewModel viewModel;
     private HashMap<Integer, Integer> posicionesFragment;
     private int ultimaPosicionSeleccionada;
 
@@ -27,6 +31,8 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        viewModel = new ViewModelProvider(this).get(HomeViewModel.class);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

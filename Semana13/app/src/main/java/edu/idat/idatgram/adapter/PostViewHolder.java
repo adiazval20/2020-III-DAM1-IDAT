@@ -9,6 +9,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
+
 import edu.idat.idatgram.R;
 import edu.idat.idatgram.entity.Post;
 
@@ -24,9 +26,9 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
 
     public void loadData(Post post) {
         txtDesripcion.setText(post.getDescripcion());
-
-        Bitmap bitmap = getBitmap(post.getRutaImagen());
-        imgFotografia.setImageBitmap(bitmap);
+        Picasso.get().load(post.getRutaImagen()).into(imgFotografia);
+//        Bitmap bitmap = getBitmap(post.getRutaImagen());
+//        imgFotografia.setImageBitmap(bitmap);
     }
 
     public Bitmap getBitmap(String rutaFoto) {

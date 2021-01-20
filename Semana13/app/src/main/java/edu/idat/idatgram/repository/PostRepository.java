@@ -1,39 +1,24 @@
 package edu.idat.idatgram.repository;
 
+import android.app.Application;
+
+import androidx.lifecycle.LiveData;
+
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.idat.idatgram.AppDatabase;
+import edu.idat.idatgram.dao.PostDao;
 import edu.idat.idatgram.entity.Post;
 
 public class PostRepository {
-    private static PostRepository instance;
-    private List<Post> posts;
+    private PostDao dao;
 
-    private PostRepository() {
-        posts = new ArrayList<>();
+    public PostRepository(Application application) {
+        dao = AppDatabase.getDatabase(application).postDao();
     }
 
-    public static PostRepository getInstance() {
-        if (instance == null) {
-            instance = new PostRepository();
-        }
-        return instance;
-    }
-
-    public List<Post> list() {
-        return posts;
-    }
-
-    public void save(Post post) {
-        if (post.getId() == 0) {
-            post.setId(posts.size() + 1);
-            this.posts.add(post);
-        } else {
-            posts.stream().forEach(p -> {
-                if (p.getId() == post.getId()) {
-                    p = post;
-                }
-            });
-        }
+    public LiveData<List<Post>> list() {
+        return dao.list();
     }
 }
