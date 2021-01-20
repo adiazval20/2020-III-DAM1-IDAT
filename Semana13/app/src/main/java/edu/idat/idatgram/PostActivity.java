@@ -3,6 +3,7 @@ package edu.idat.idatgram;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -24,8 +25,10 @@ import java.util.Date;
 
 import edu.idat.idatgram.entity.Post;
 import edu.idat.idatgram.repository.PostRepository;
+import edu.idat.idatgram.viewmodel.PostViewModel;
 
 public class PostActivity extends AppCompatActivity {
+    private PostViewModel viewModel;
     private static final int REQUEST_IMAGE_CAPTURE = 1;
     private static final int REQUEST_TAKE_PICTURE = 2;
     private ImageView imgFoto;
@@ -37,6 +40,8 @@ public class PostActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post);
+
+        viewModel = new ViewModelProvider(this).get(PostViewModel.class);
 
         imgFoto = findViewById(R.id.imgFoto);
         btnTomarFoto = findViewById(R.id.btnTomarFoto);
@@ -56,6 +61,7 @@ public class PostActivity extends AppCompatActivity {
                 Post post = new Post();
                 post.setRutaImagen(rutaFoto);
                 post.setDescripcion(edtDescripcion.getText().toString());
+                viewModel.save(post);
 //                PostRepository.getInstance().save(post);
                 finish();
             }

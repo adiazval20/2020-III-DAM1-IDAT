@@ -21,4 +21,17 @@ public class PostRepository {
     public LiveData<List<Post>> list() {
         return dao.list();
     }
+
+    public void save(Post post) {
+        AppDatabase.dbExecutor.execute(new Runnable() {
+            @Override
+            public void run() {
+                if (post.getId() == 0) {
+                    dao.insert(post);
+                } else {
+                    dao.update(post);
+                }
+            }
+        });
+    }
 }

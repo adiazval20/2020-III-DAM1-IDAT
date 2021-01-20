@@ -49,9 +49,9 @@ public abstract class AppDatabase extends RoomDatabase {
                     usuarioDao.insert(new Usuario("admin", "admin"));
                     usuarioDao.insert(new Usuario("user", "123456"));
 
-                    PostDao postDao = DB.postDao();
-                    postDao.insert(new Post("https://i.blogs.es/92ef6b/650_1000_rpi-2-3/375_142.jpg", "Post 1"));
-                    postDao.insert(new Post("https://i.blogs.es/7f770c/image-2020-07-13-10-21-48/375_142.jpg", "Post 2"));
+//                    PostDao postDao = DB.postDao();
+//                    postDao.insert(new Post("https://i.blogs.es/92ef6b/650_1000_rpi-2-3/375_142.jpg", "Post 1"));
+//                    postDao.insert(new Post("https://i.blogs.es/7f770c/image-2020-07-13-10-21-48/375_142.jpg", "Post 2"));
                 }
             });
         }
