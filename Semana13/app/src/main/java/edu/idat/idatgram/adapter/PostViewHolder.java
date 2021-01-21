@@ -15,20 +15,32 @@ import edu.idat.idatgram.R;
 import edu.idat.idatgram.entity.Post;
 
 public class PostViewHolder extends RecyclerView.ViewHolder {
+    private int layout;
     private ImageView imgFotografia;
     private TextView txtDesripcion;
 
-    public PostViewHolder(@NonNull View itemView) {
+    public PostViewHolder(@NonNull View itemView, int layout) {
         super(itemView);
+        this.layout = layout;
         imgFotografia = itemView.findViewById(R.id.imgFotografia);
         txtDesripcion = itemView.findViewById(R.id.txtDescripcion);
     }
 
     public void loadData(Post post) {
-        txtDesripcion.setText(post.getDescripcion());
-        Picasso.get().load(post.getRutaImagen()).into(imgFotografia);
-//        Bitmap bitmap = getBitmap(post.getRutaImagen());
-//        imgFotografia.setImageBitmap(bitmap);
+        Bitmap bitmap;
+
+        switch (layout) {
+            case R.layout.item_post:
+                txtDesripcion.setText(post.getDescripcion());
+                bitmap = getBitmap(post.getRutaImagen());
+                imgFotografia.setImageBitmap(bitmap);
+                break;
+            case R.layout.item_post_resume:
+                bitmap = getBitmap(post.getRutaImagen());
+                imgFotografia.setImageBitmap(bitmap);
+                break;
+        }
+
     }
 
     public Bitmap getBitmap(String rutaFoto) {

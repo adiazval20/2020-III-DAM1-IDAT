@@ -14,21 +14,24 @@ import edu.idat.idatgram.R;
 import edu.idat.idatgram.entity.Post;
 
 public class PostAdapter extends RecyclerView.Adapter<PostViewHolder> {
+    private int layout;
     private List<Post> posts;
 
     public PostAdapter() {
+        this.layout = R.layout.item_post;
         this.posts = new ArrayList<>();
     }
 
-    public PostAdapter(List<Post> posts) {
-        this.posts = posts;
+    public PostAdapter(int layout) {
+        this.layout = layout;
+        this.posts = new ArrayList<>();
     }
 
     @NonNull
     @Override
     public PostViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_post, parent, false);
-        return new PostViewHolder(view);
+        View view = LayoutInflater.from(parent.getContext()).inflate(layout, parent, false);
+        return new PostViewHolder(view, layout);
     }
 
     @Override
