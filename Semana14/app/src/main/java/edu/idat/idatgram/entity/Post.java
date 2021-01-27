@@ -7,6 +7,7 @@ import androidx.room.PrimaryKey;
 public class Post {
     @PrimaryKey(autoGenerate = true)
     private long id;
+    private String nombreImagen;
     private String rutaImagen;
     private String descripcion;
 
@@ -24,6 +25,14 @@ public class Post {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public String getNombreImagen() {
+        return nombreImagen;
+    }
+
+    public void setNombreImagen(String nombreImagen) {
+        this.nombreImagen = nombreImagen;
     }
 
     public String getRutaImagen() {

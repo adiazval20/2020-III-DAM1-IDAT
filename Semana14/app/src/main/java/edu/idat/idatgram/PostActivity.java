@@ -1,5 +1,6 @@
 package edu.idat.idatgram;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
@@ -15,8 +16,16 @@ import android.provider.MediaStore;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.io.File;
 import java.io.IOException;
@@ -29,6 +38,7 @@ import edu.idat.idatgram.viewmodel.PostViewModel;
 
 public class PostActivity extends AppCompatActivity {
     private PostViewModel viewModel;
+    private FirebaseStorage storage;
     private static final int REQUEST_IMAGE_CAPTURE = 1;
     private static final int REQUEST_TAKE_PICTURE = 2;
     private ImageView imgFoto;
@@ -42,6 +52,7 @@ public class PostActivity extends AppCompatActivity {
         setContentView(R.layout.activity_post);
 
         viewModel = new ViewModelProvider(this).get(PostViewModel.class);
+        storage = FirebaseStorage.getInstance();
 
         imgFoto = findViewById(R.id.imgFoto);
         btnTomarFoto = findViewById(R.id.btnTomarFoto);
@@ -58,12 +69,15 @@ public class PostActivity extends AppCompatActivity {
         btnGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                File file = new File(rutaFoto);
+
                 Post post = new Post();
+                post.setNombreImagen(file.getName());
                 post.setRutaImagen(rutaFoto);
                 post.setDescripcion(edtDescripcion.getText().toString());
                 viewModel.save(post);
-//                PostRepository.getInstance().save(post);
-                finish();
+
+                uploadFile(file);
             }
         });
     }
@@ -80,7 +94,6 @@ public class PostActivity extends AppCompatActivity {
             }
 
             if (requestCode == REQUEST_TAKE_PICTURE) {
-                guardarFoto();
                 mostrarFoto(imgFoto);
             }
         }
@@ -114,28 +127,40 @@ public class PostActivity extends AppCompatActivity {
         return imagen;
     }
 
-    private void guardarFoto() {
-        Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-        File file = new File(rutaFoto);
+    /**
+     * Subir un archivo al servicio de Firebase Storage
+     * @param file -> Archivo local en el que se está almacenando la fotografía
+     */
+    private void uploadFile(File file) {
+        // Ruta en el servicio (nube) donde se alojará el archivo
+        String path = "fotos/" + file.getName();
+
+        // Obtenemos la referencia de la ruta en la nube
+        StorageReference reference = storage.getReference(path);
+
+        // Subimos el archivo
         Uri uri = Uri.fromFile(file);
-        mediaScanIntent.setData(uri);
-        sendBroadcast(mediaScanIntent);
+        UploadTask task = reference.putFile(uri);
+        task.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                Toast.makeText(PostActivity.this, "Archivo subido correctamente", Toast.LENGTH_LONG).show();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(PostActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        }).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                finish();
+            }
+        });
     }
 
     private void mostrarFoto(ImageView imageView) {
-        int anchoImageView = imageView.getWidth();
-        int altoImageView = imageView.getHeight();
-
         BitmapFactory.Options opciones = new BitmapFactory.Options();
-        opciones.inJustDecodeBounds = true;
-
-        int anchoFoto = opciones.outWidth;
-        int altoFoto = opciones.outHeight;
-
-        int factorEscala = Math.min(anchoFoto / anchoImageView, altoFoto / altoImageView);
-        opciones.inJustDecodeBounds = false;
-        opciones.inSampleSize = factorEscala;
-
         Bitmap bitmap = BitmapFactory.decodeFile(rutaFoto, opciones);
         imageView.setImageBitmap(bitmap);
     }
