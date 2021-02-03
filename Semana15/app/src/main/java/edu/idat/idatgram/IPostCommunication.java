@@ -1,5 +1,5 @@
 package edu.idat.idatgram;
 
 public interface IPostCommunication {
-    void loadPostActivity(long id, Class<?> className);
+    void loadPostActivity(String id, Class<?> className);
 }

@@ -73,7 +73,7 @@ public class PerfilFragment extends Fragment implements IPostCommunication {
     }
 
     @Override
-    public void loadPostActivity(long id, Class<?> className) {
+    public void loadPostActivity(String id, Class<?> className) {
         Intent intent = new Intent(getActivity(), className);
         intent.putExtra("id", id);
         startActivity(intent);

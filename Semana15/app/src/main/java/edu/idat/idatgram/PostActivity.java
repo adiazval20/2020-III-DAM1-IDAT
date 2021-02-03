@@ -33,7 +33,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import edu.idat.idatgram.entity.Post;
-import edu.idat.idatgram.repository.PostRepository;
 import edu.idat.idatgram.viewmodel.PostViewModel;
 
 public class PostActivity extends AppCompatActivity {
@@ -72,9 +71,9 @@ public class PostActivity extends AppCompatActivity {
                 File file = new File(rutaFoto);
 
                 Post post = new Post();
-                post.setNombreImagen(file.getName());
-                post.setRutaImagen(rutaFoto);
-                post.setDescripcion(edtDescripcion.getText().toString());
+                post.setImage(file.getName());
+                post.setPublishDate(rutaFoto);
+                post.setText(edtDescripcion.getText().toString());
                 viewModel.save(post);
 
                 uploadFile(file);

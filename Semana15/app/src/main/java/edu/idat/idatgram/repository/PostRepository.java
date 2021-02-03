@@ -4,10 +4,9 @@ import android.app.Application;
 
 import androidx.lifecycle.LiveData;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import edu.idat.idatgram.AppDatabase;
+import edu.idat.idatgram.config.AppDatabase;
 import edu.idat.idatgram.dao.PostDao;
 import edu.idat.idatgram.entity.Post;
 
@@ -30,7 +29,7 @@ public class PostRepository {
         AppDatabase.dbExecutor.execute(new Runnable() {
             @Override
             public void run() {
-                if (post.getId() == 0) {
+                if (post.getId().trim().equals("")) {
                     dao.insert(post);
                 } else {
                     dao.update(post);

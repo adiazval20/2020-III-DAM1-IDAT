@@ -47,7 +47,7 @@ public class PostReviewActivity extends AppCompatActivity {
         viewModel.find(id).observe(this, new Observer<Post>() {
             @Override
             public void onChanged(Post post) {
-                txtDescripcion.setText(post.getDescripcion());
+                txtDescripcion.setText(post.getText());
                 loadFotografia(post);
             }
         });
@@ -56,7 +56,7 @@ public class PostReviewActivity extends AppCompatActivity {
     private void loadFotografia(Post post) {
         try {
             File localFile = File.createTempFile("images", "jpg");
-            String path = "fotos/" + post.getNombreImagen();
+            String path = "fotos/" + post.getImage();
             StorageReference reference = storage.getReference(path);
             reference.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
                 @Override

@@ -54,7 +54,7 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
 
     public void loadData(Post post) {
         if (layout == R.layout.item_post) {
-            txtDesripcion.setText(post.getDescripcion());
+            txtDesripcion.setText(post.getText());
         }
 
         if (layout == R.layout.item_post_resume) {
@@ -66,30 +66,32 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
             });
         }
 
-        try {
-            File localFile = File.createTempFile("images", "jpg");
+        Picasso.get().load(post.getImage()).into(imgFotografia);
 
-            // Ruta de la nube donde está almacenado el archivo
-            String path = "fotos/" + post.getNombreImagen();
-
-            // Obtenemos la referencia
-            StorageReference reference = storage.getReference(path);
-            reference.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-                    Bitmap bitmap = getBitmap(localFile.getAbsolutePath());
-                    imgFotografia.setImageBitmap(bitmap);
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(itemView.getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
-                }
-            });
-
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
+//        try {
+//            File localFile = File.createTempFile("images", "jpg");
+//
+//            // Ruta de la nube donde está almacenado el archivo
+//            String path = "fotos/" + post.getImage();
+//
+//            // Obtenemos la referencia
+//            StorageReference reference = storage.getReference(path);
+//            reference.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+//                @Override
+//                public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+//                    Bitmap bitmap = getBitmap(localFile.getAbsolutePath());
+//                    imgFotografia.setImageBitmap(bitmap);
+//                }
+//            }).addOnFailureListener(new OnFailureListener() {
+//                @Override
+//                public void onFailure(@NonNull Exception e) {
+//                    Toast.makeText(itemView.getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+//                }
+//            });
+//
+//        } catch (IOException ex) {
+//            ex.printStackTrace();
+//        }
 
     }
 

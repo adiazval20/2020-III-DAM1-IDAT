@@ -1,6 +1,7 @@
 package edu.idat.idatgram.entity;
 
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity
@@ -16,6 +17,7 @@ public class Usuario {
         this.password = "";
     }
 
+    @Ignore
     public Usuario(String username, String password) {
         this.id = 0;
         this.username = username;

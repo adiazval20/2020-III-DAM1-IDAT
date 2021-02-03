@@ -17,13 +17,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import java.util.List;
 
 import edu.idat.idatgram.adapter.PostAdapter;
+import edu.idat.idatgram.api.PostApi;
+import edu.idat.idatgram.api.ResponseListApi;
+import edu.idat.idatgram.config.RetrofitConfig;
 import edu.idat.idatgram.entity.Post;
 import edu.idat.idatgram.repository.PostRepository;
 import edu.idat.idatgram.viewmodel.HomeViewModel;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class InicioFragment extends Fragment {
     private HomeViewModel viewModel;
@@ -51,6 +58,21 @@ public class InicioFragment extends Fragment {
             @Override
             public void onChanged(List<Post> posts) {
                 adapter.loadData(posts);
+            }
+        });
+
+        PostApi postApi = RetrofitConfig.getPostApi();
+        postApi.list().enqueue(new Callback<ResponseListApi<List<Post>>>() {
+            @Override
+            public void onResponse(Call<ResponseListApi<List<Post>>> call, Response<ResponseListApi<List<Post>>> response) {
+                List<Post> posts = response.body().getData();
+                adapter.loadData(posts);
+//                Toast.makeText(getContext(), String.valueOf(posts.size()), Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onFailure(Call<ResponseListApi<List<Post>>> call, Throwable t) {
+                Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
     }

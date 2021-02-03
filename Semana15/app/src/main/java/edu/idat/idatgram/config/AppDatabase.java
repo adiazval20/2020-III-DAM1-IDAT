@@ -1,4 +1,4 @@
-package edu.idat.idatgram;
+package edu.idat.idatgram.config;
 
 import android.content.Context;
 
