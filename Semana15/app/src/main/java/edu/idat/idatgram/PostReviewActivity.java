@@ -17,12 +17,18 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
 import java.io.File;
 import java.io.IOException;
 
+import edu.idat.idatgram.api.PostApi;
+import edu.idat.idatgram.config.RetrofitConfig;
 import edu.idat.idatgram.entity.Post;
 import edu.idat.idatgram.viewmodel.PostReviewViewModel;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class PostReviewActivity extends AppCompatActivity {
     private PostReviewViewModel viewModel;
@@ -42,13 +48,13 @@ public class PostReviewActivity extends AppCompatActivity {
         txtDescripcion = findViewById(R.id.txtDescripcion);
 
         Bundle data = getIntent().getExtras();
-        long id = (data == null) ? 0 : data.getLong("id");
+        String id = (data == null) ? "" : data.getString("id");
 
         viewModel.find(id).observe(this, new Observer<Post>() {
             @Override
             public void onChanged(Post post) {
                 txtDescripcion.setText(post.getText());
-                loadFotografia(post);
+                Picasso.get().load(post.getImage()).into(imgFotografia);
             }
         });
     }

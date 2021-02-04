@@ -62,7 +62,7 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        loadFragment(R.id.optInicio);
+//        loadFragment(R.id.optInicio);
     }
 
     @Override

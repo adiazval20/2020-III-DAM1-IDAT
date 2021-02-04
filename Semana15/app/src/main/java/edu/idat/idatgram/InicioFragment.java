@@ -61,19 +61,19 @@ public class InicioFragment extends Fragment {
             }
         });
 
-        PostApi postApi = RetrofitConfig.getPostApi();
-        postApi.list().enqueue(new Callback<ResponseListApi<List<Post>>>() {
-            @Override
-            public void onResponse(Call<ResponseListApi<List<Post>>> call, Response<ResponseListApi<List<Post>>> response) {
-                List<Post> posts = response.body().getData();
-                adapter.loadData(posts);
-//                Toast.makeText(getContext(), String.valueOf(posts.size()), Toast.LENGTH_LONG).show();
-            }
-
-            @Override
-            public void onFailure(Call<ResponseListApi<List<Post>>> call, Throwable t) {
-                Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_LONG).show();
-            }
-        });
+//        PostApi postApi = RetrofitConfig.getPostApi();
+//        postApi.list().enqueue(new Callback<ResponseListApi<List<Post>>>() {
+//            @Override
+//            public void onResponse(Call<ResponseListApi<List<Post>>> call, Response<ResponseListApi<List<Post>>> response) {
+//                List<Post> posts = response.body().getData();
+//                adapter.loadData(posts);
+////                Toast.makeText(getContext(), String.valueOf(posts.size()), Toast.LENGTH_LONG).show();
+//            }
+//
+//            @Override
+//            public void onFailure(Call<ResponseListApi<List<Post>>> call, Throwable t) {
+//                Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_LONG).show();
+//            }
+//        });
     }
 }
